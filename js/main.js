@@ -1,7 +1,3 @@
-"use strict";
-
-// So we don't have to keep re-finding things on page, find DOM elements once:
-
 const $body = $("body");
 
 const $storiesLoadingMsg = $("#stories-loading-msg");
@@ -18,11 +14,6 @@ const $navLogOut = $("#nav-logout");
 const $navSubmit = $('#nav-submit');
 const $navFavorites = $('#nav-favorites')
 
-/** To make it easier for individual components to show just themselves, this
- * is a useful function that hides pretty much everything on the page. After
- * calling this, individual components can re-show just what they want.
- */
-
 function hidePageComponents() {
   const components = [
     $allStoriesList,
@@ -35,12 +26,11 @@ function hidePageComponents() {
   components.forEach(c => c.hide());
 }
 
-/** Overall function to kick off the app. */
 
 async function start() {
   console.debug("start");
 
-  // "Remember logged-in user" and log in, if credentials in localStorage
+  // "Remember logged-in user" and log in
   await checkForRememberedUser();
   await getAndShowStoriesOnStart();
 
